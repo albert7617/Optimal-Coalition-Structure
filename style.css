@@ -3,6 +3,11 @@ body {
   width: 100%;
 }
 
+button, select {
+  padding: 5px;
+  margin: 5px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -74,26 +79,72 @@ body {
   width: 95%;
 }
 
-.cell-wide {
-  width: 100px;
+.coalition-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  width: 100%;
+  margin-bottom: 20vh;
 }
 
-.shapley-container .cell-wide {
-  width: 200px;
+.coalition-container .row-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: white 2px solid;
 }
 
-.cell-wide:not(.cell-bottom)>div>span {
-  border-top: white 1px solid;
+.coalition-container .row-container .row {
+  display: flex;
+  flex-direction: row;
 }
 
-.cell-wide>div>span {
-  display: inline-block;
+.coalition-container .row-container .col {
+  /*display: flex;
+  flex-direction: column;*/
+  background-color: rgb(210, 222, 239);
+  border-right: white 2px solid;
+  text-align: center;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cell-wide>div>span:first-child {
-  width: 75px;
+.coalition-container .row-container .col.header {
+  background-color: rgb(85, 145, 199);
+  color: white;
 }
 
-.cell-wide>div>span:last-child {
-  width: 125px;
+
+.coalition-container .col-1 {
+  min-width: 75px;
+}
+
+.coalition-container .col-2 {
+  min-width: 400px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.coalition-container .col-2>span {
+  padding-right: 2px;
+  padding-left: 2px;
+  min-width: 196px;
+  width: 45%;
+  /*flex: 1;*/
+}
+
+.coalition-container .col-2>span.highlight {
+  background-color: red;
+}
+
+.coalition-container .col-3 {
+  min-width: 150px;
+}
+
+.coalition-container .col-4 {
+  min-width: 55px;
 }
