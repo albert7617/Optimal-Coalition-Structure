@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shapley</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>#players</h2>
+    <select id="players">
+      <option value="2">2</option>
+      <option value="3" selected>3</option>
+      <option value="4">4</option>
+      <option value="4">5</option>
+      <option value="5">6</option>
+      <option value="6">7</option>
+      <option value="7">8</option>
+    </select>
+    <h2>Characteristic Function</h2>
+    <div>
+      <div class="characteristic-container">
+        <div class="cell-container">
+          <div class="cell-top">Players</div>
+          <div class="cell-bottom">Payoff</div>
+        </div>
+      </div>
+      <div id="characteristic" class="characteristic-container"></div>
+    </div>
+    <button id="calculate">Calculate</button>
+    <h2>Shapley Value</h2>
+    <div id="shapley" class="shapley-container"></div>
+  </div>
+</body>
+</html>

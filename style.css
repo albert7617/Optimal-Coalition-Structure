@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px){
+  .container {
+    width: 95vw;
+  }
+}
+@media (min-width: 901px){
+  .container {
+    width: 80vw;
+  }
+}
+
+.shapley-container, .characteristic-container {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.characteristic-container {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.shapley-container {
+  overflow-x: scroll;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell-container {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.cell-top, .cell-bottom {
+  width: 75px;
+  text-align: center;
+  padding: 5px;
+  border-right: white 2px solid;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cell-top {
+  background-color: rgb(85, 145, 199);
+  color: white;
+  border-bottom: white 3px solid;
+}
+
+.cell-bottom {
+  background-color: rgb(210, 222, 239);
+  border-bottom: white 2px solid;
+}
+
+.cell-bottom>input {
+  width: 95%;
+}
+
+.cell-wide {
+  width: 100px;
+}
+
+.shapley-container .cell-wide {
+  width: 200px;
+}
+
+.cell-wide:not(.cell-bottom)>div>span {
+  border-top: white 1px solid;
+}
+
+.cell-wide>div>span {
+  display: inline-block;
+}
+
+.cell-wide>div>span:first-child {
+  width: 75px;
+}
+
+.cell-wide>div>span:last-child {
+  width: 125px;
+}
