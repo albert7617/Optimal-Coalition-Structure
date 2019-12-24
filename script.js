@@ -34,7 +34,7 @@ $(function() {
         spans += `<span id='sub-${elem.join('-')}'>v({${elem.join('}+{')}})=${payoff}</span>`;
       });
       all_combinations_payoff[element] = Math.max(...Object.values(tobe_compared));
-      row += `<div class="row"><div class="col col-1" id="c-${element}" data-tc="c-${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element])}">${element}</div><div class="col col-2">${spans}</div><div class="col col-3">{${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element]).split(',').join('}+{')}}</div><div class="col col-4">${all_combinations_payoff[element]}</div></div>`;
+      row += `<div class="row"><div class="col col-1" id="c-${element}" data-tc="${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element])}">${element}</div><div class="col col-2">${spans}</div><div class="col col-3">{${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element]).split(',').join('}+{')}}</div><div class="col col-4">${all_combinations_payoff[element]}</div></div>`;
       highlight.push('#sub-'+Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element]).split(',').join('-'));
       if (idx+1>=arr.length) {
         $('#coalition').append(`<div class="row-container">${row}</div>`)
@@ -48,7 +48,7 @@ $(function() {
     });
     highlight.forEach(elem => $(elem).addClass('highlight'));
     $('#answer').html('Optimal Coalition Structure: ');
-    $('#answer').append(findOptimal($('.row-container:last-child .col-1').data('tc').slice(2)));
+    $('#answer').append(findOptimal($('.row-container:last-child .col-1').data('tc')));
   });
   $('#players').trigger('change');
 });
@@ -76,6 +76,24 @@ function getSubCoalition(coalition) {
     combinations(coalition).sort((a, b) => a.length - b.length || a.localeCompare(b)).some((elem,idx,arr) => {retval.push([elem, arr[arr.length-2-idx]]);return Math.floor(arr.length/2)-1 == idx;})
     return retval;
   }
+}
+
+function findOptimal(coalition) {
+  var [t1, t2] = coalition.split(',');
+  var r1, r2;
+  if ($('#c-'+t1).data('tc')==t1) {
+    r1 = `{${t1}}`;
+  } else {
+    r1 = findOptimal($('#c-'+t1).data('tc'));
+  }
+  if (t2 != undefined) {
+    if ($('#c-'+t2).data('tc')==t2) {
+      r2 = `{${t2}}`;
+    } else {
+      r2 = findOptimal($('#c-'+t2).data('tc'));
+    }
+  }
+  return `${r1}+${r2}`;
 }
 
 String.prototype.allReplace = function(str) {
