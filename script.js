@@ -34,7 +34,7 @@ $(function() {
         spans += `<span id='sub-${elem.join('-')}'>v({${elem.join('}+{')}})=${payoff}</span>`;
       });
       all_combinations_payoff[element] = Math.max(...Object.values(tobe_compared));
-      row += `<div class="row"><div class="col col-1">${element}</div><div class="col col-2">${spans}</div><div class="col col-3">{${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element]).split(',').join('}+{')}}</div><div class="col col-4">${all_combinations_payoff[element]}</div></div>`;
+      row += `<div class="row"><div class="col col-1" id="c-${element}" data-tc="c-${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element])}">${element}</div><div class="col col-2">${spans}</div><div class="col col-3">{${Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element]).split(',').join('}+{')}}</div><div class="col col-4">${all_combinations_payoff[element]}</div></div>`;
       highlight.push('#sub-'+Object.keys(tobe_compared).find(key => tobe_compared[key] === all_combinations_payoff[element]).split(',').join('-'));
       if (idx+1>=arr.length) {
         $('#coalition').append(`<div class="row-container">${row}</div>`)
@@ -47,7 +47,8 @@ $(function() {
       }
     });
     highlight.forEach(elem => $(elem).addClass('highlight'));
-    // console.log(highlight);
+    $('#answer').html('Optimal Coalition Structure: ');
+    $('#answer').append(findOptimal($('.row-container:last-child .col-1').data('tc').slice(2)));
   });
   $('#players').trigger('change');
 });
